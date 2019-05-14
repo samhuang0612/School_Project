@@ -1,0 +1,488 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>question1</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-07"><meta name="DC.source" content="question1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Author : Lishan Huang</span>
+<span class="comment">% Created : Feburary 5, 2019</span>
+<span class="comment">% Last Updated : Feb 5, 2019</span>
+<span class="comment">% AM2811 lab3A</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% ===========</span>
+<span class="comment">% clear figures, close plot windows, clear variables</span>
+clf;
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+</pre><pre class="codeinput"><span class="comment">%Problem 1</span>
+<span class="comment">%Solve the system using different method</span>
+<span class="comment">%create matrix of coefficient</span>
+coef=[2, -1 , 3 , 4; 1, 0, -2, 7; 3, -3, 1, 5; 2, 1, 4, 4];
+<span class="comment">%create vector of right side</span>
+solu=[9;11;8;10];
+<span class="comment">%Solve the system by backslash</span>
+disp(<span class="string">'Solve the system by backslash'</span>)
+ans1=coef\solu
+<span class="comment">%Solve the system by inverse function</span>
+coefinv=inv(coef);
+disp(<span class="string">'Solve the system by inverse function'</span>)
+ans2=coefinv*solu
+<span class="comment">%Solve the system by QR function</span>
+[q,r]=qr(coef);
+disp(<span class="string">'Solve the system by QR function'</span>)
+ans3=r\(q'*solu)
+</pre><pre class="codeoutput">Solve the system by backslash
+
+ans1 =
+
+   -1.0000
+   -0.0000
+    1.0000
+    2.0000
+
+Solve the system by inverse function
+
+ans2 =
+
+   -1.0000
+   -0.0000
+    1.0000
+    2.0000
+
+Solve the system by QR function
+
+ans3 =
+
+   -1.0000
+    0.0000
+    1.0000
+    2.0000
+
+</pre><pre class="codeinput"><span class="comment">%Problem 2</span>
+<span class="comment">%Generate a random matrix A of size 3000 &times; 3000</span>
+A=rand(3000);
+<span class="comment">%Generate a random vector b of size 3000 &times; 1.</span>
+b=rand(3000,1);
+
+disp(<span class="string">'time for  \ directly  repeating in 3 time '</span>)
+<span class="comment">%begin to time</span>
+    tic
+    <span class="comment">%use for loop for repeating 3 time</span>
+    <span class="keyword">for</span> i=1:3
+        ans1=A\b;
+    <span class="keyword">end</span>
+    toc
+<span class="comment">%end time</span>
+disp(<span class="string">'scaled residuals of the solutions by \'</span>)
+<span class="comment">%diplay scaled residuals of the solutions by \</span>
+Scale1=norm(b-A*ans1)/norm(b)
+
+disp(<span class="string">'time for inverse repeating in 3 time'</span>)
+<span class="comment">%begin to time</span>
+    tic
+    <span class="comment">%use for loop for repeating 3 time</span>
+    <span class="keyword">for</span> i=1:3
+        ans2=inv(A)*b;
+    <span class="keyword">end</span>
+    toc
+<span class="comment">%end time</span>
+display(<span class="string">'scaled residuals of the solutions by inverse'</span>)
+<span class="comment">%diplay scaled residuals of the solutions by inverse</span>
+Scale2=norm(b-A*ans2)/norm(b)
+
+display(<span class="string">'time for qr repeating in 3 time'</span>)
+<span class="comment">%begin to time</span>
+    tic
+        <span class="comment">%use for loop for repeating 3 time</span>
+    <span class="keyword">for</span> i=1:3
+        [q,r]=qr(A);
+        ans3=r\(q'*b);
+    <span class="keyword">end</span>
+<span class="comment">%end time</span>
+    toc
+[q,r]=qr(A);
+ans3=r\(q'*b);
+display(<span class="string">'scaled residuals of the solutions by qr'</span>)
+<span class="comment">%diplay scaled residuals of the solutions by qr</span>
+Scale3=norm(b-A*ans3)/norm(b)
+
+<span class="comment">% using the backslash operator is the fastest method to solve the linear</span>
+<span class="comment">% system with largest scaled residual while using QR decomposition is the</span>
+<span class="comment">% slowest method with smallest scaled residual.</span>
+</pre><pre class="codeoutput">time for  \ directly  repeating in 3 time 
+Elapsed time is 0.850339 seconds.
+scaled residuals of the solutions by \
+
+Scale1 =
+
+   4.1923e-12
+
+time for inverse repeating in 3 time
+Elapsed time is 1.672119 seconds.
+scaled residuals of the solutions by inverse
+
+Scale2 =
+
+   2.6836e-12
+
+time for qr repeating in 3 time
+Elapsed time is 2.056076 seconds.
+scaled residuals of the solutions by qr
+
+Scale3 =
+
+   1.4982e-13
+
+</pre><pre class="codeinput"><span class="comment">%Problem 3</span>
+<span class="comment">%Create a 6000 &times; 3000 matrix A first 3000 rows are random, and the second</span>
+<span class="comment">%3000 rows repeat the first 3000.</span>
+A=rand(3000,3000);
+A=[A;A];
+<span class="comment">%Create a 6000 &times; 1 random vector b</span>
+b=rand(6000,1);
+<span class="comment">%Create the augmented matrix</span>
+C=[A b];
+<span class="comment">%since the second 3000 rows repeat the first 3000, then the last</span>
+<span class="comment">%3000 rows must be dependent of the first 3000 rows, so the rank of this</span>
+<span class="comment">%matrix is less than or equal to 3000 and no equal to the size of solution</span>
+<span class="comment">%vector, so this system has no solution</span>
+solu1=A\b;
+<span class="comment">% scaled residuals of calculated by \</span>
+disp(<span class="string">'scaled residuals of calculated by \'</span>)
+norm(b-A*solu1)/norm(b)
+solu2=(A'*A)\(A'*b);
+<span class="comment">% scaled residuals calculated by normal equations</span>
+disp(<span class="string">'scaled residuals of calculated by normal equations'</span>)
+norm(b-A*solu2)/norm(b)
+<span class="comment">%</span>
+<span class="comment">%the result in the normal equations is same as the result in backlash</span>
+<span class="comment">%operator since in the normal equation method,A' is eliminated in numerator</span>
+<span class="comment">%and denominator and also the error of A' , thus the solution in  in</span>
+<span class="comment">%backlash operator is same as in normal equation method, and also their</span>
+<span class="comment">%norm.</span>
+</pre><pre class="codeoutput">scaled residuals of calculated by \
+
+ans =
+
+    0.3521
+
+scaled residuals of calculated by normal equations
+
+ans =
+
+    0.3521
+
+</pre><pre class="codeinput"><span class="comment">%Problem 4</span>
+<span class="comment">%create a 20&times;20 matrix</span>
+A=rand(20);
+b=rand(20,1);
+<span class="comment">%replace the last row as the second last row, so it must be linear</span>
+<span class="comment">%combination of the second last row</span>
+B=[A(1:19,:);A(19,:)];
+<span class="comment">%determinant of this singular matrix</span>
+disp(<span class="string">'determinant of this matrix'</span>)
+det(B);
+disp(det(B))
+disp(<span class="string">'solution of this matrix'</span>)
+solu=B\b
+<span class="comment">%the determinant may be zero or a very smalle number, if there is no</span>
+<span class="comment">%roundoff errror in the the elimination process such that the second last</span>
+<span class="comment">%row eliminate the last row directly at first, then the last row will be</span>
+<span class="comment">%zero, then the determinant will be 0. if the last row or second last row</span>
+<span class="comment">%has been eliminated by other rows before eliminating each other and a</span>
+<span class="comment">%roundoff error occurs, then the last row is not equal to the second last</span>
+<span class="comment">%row anymore due to the roundoff error, so it is a nonsingular matrix and</span>
+<span class="comment">%the determinant will not be 0.</span>
+</pre><pre class="codeoutput">determinant of this matrix
+   8.8395e-19
+
+solution of this matrix
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  3.849238e-19. 
+
+solu =
+
+   1.0e+15 *
+
+   -0.9705
+    4.2961
+   -9.3856
+   -2.4896
+   -5.1916
+    6.5570
+    3.7301
+    2.9684
+   -1.9170
+   -9.2259
+   -0.3378
+    4.7932
+   -0.3043
+    2.3720
+    7.4741
+   -8.6752
+   -2.1158
+    4.6468
+   -0.4190
+    0.4532
+
+</pre><pre class="codeinput"><span class="comment">%Problem 5</span>
+<span class="comment">%create a 20&times;20 matrix</span>
+A=rand(20);
+<span class="comment">%determinant of A</span>
+disp(<span class="string">'determinant of matrix A'</span>)
+det(A)
+disp(<span class="string">'The determinant is not zero'</span>)
+<span class="comment">%divide the matrix by 10</span>
+B=A/10;
+<span class="comment">%determinant of A divide by 10</span>
+disp(<span class="string">'determinant of matrix A after dividing by 10'</span>)
+det(B)
+<span class="comment">%No?a small determinant is not a good indicator of a singular matrix.</span>
+<span class="comment">%since the roundoff error may coursed by formulas that involve roundoff</span>
+<span class="comment">%error, convert to floating point arithmetic or roundoff errors in</span>
+<span class="comment">%Gaussian elimination. Then the singular matrix may be no longer a singular</span>
+<span class="comment">%matrix due to the roundoff error but very closed, then the roundoff error</span>
+<span class="comment">%will cause a smalle determinant. However, a smaller determinant is</span>
+<span class="comment">%necessary to be casued by roundoff error, if the sizes of the elements in</span>
+<span class="comment">%the matrix are very small, then it also result in a small determinant. But</span>
+<span class="comment">%small determinant of a singular matrix will be very close to 1*e-18 while a</span>
+<span class="comment">%the determinant of small size matrix can be much samller than that?</span>
+</pre><pre class="codeoutput">determinant of matrix A
+
+ans =
+
+    0.5864
+
+The determinant is not zero
+determinant of matrix A after dividing by 10
+
+ans =
+
+   5.8642e-21
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Author : Lishan Huang
+% Created : Feburary 5, 2019
+% Last Updated : Feb 5, 2019
+% AM2811 lab3A
+%
+%
+% ===========
+% clear figures, close plot windows, clear variables
+clf;
+close all;
+clear all;
+%%
+%Problem 1
+%Solve the system using different method
+%create matrix of coefficient
+coef=[2, -1 , 3 , 4; 1, 0, -2, 7; 3, -3, 1, 5; 2, 1, 4, 4];
+%create vector of right side
+solu=[9;11;8;10];
+%Solve the system by backslash
+disp('Solve the system by backslash')
+ans1=coef\solu
+%Solve the system by inverse function
+coefinv=inv(coef);
+disp('Solve the system by inverse function')
+ans2=coefinv*solu
+%Solve the system by QR function
+[q,r]=qr(coef);
+disp('Solve the system by QR function')
+ans3=r\(q'*solu)
+%%
+%Problem 2
+%Generate a random matrix A of size 3000 × 3000
+A=rand(3000);
+%Generate a random vector b of size 3000 × 1.
+b=rand(3000,1);
+
+disp('time for  \ directly  repeating in 3 time ')
+%begin to time
+    tic
+    %use for loop for repeating 3 time
+    for i=1:3
+        ans1=A\b;
+    end
+    toc
+%end time
+disp('scaled residuals of the solutions by \')
+%diplay scaled residuals of the solutions by \
+Scale1=norm(b-A*ans1)/norm(b)
+
+disp('time for inverse repeating in 3 time')
+%begin to time 
+    tic
+    %use for loop for repeating 3 time
+    for i=1:3
+        ans2=inv(A)*b;
+    end
+    toc
+%end time
+display('scaled residuals of the solutions by inverse')
+%diplay scaled residuals of the solutions by inverse
+Scale2=norm(b-A*ans2)/norm(b)
+
+display('time for qr repeating in 3 time')
+%begin to time
+    tic
+        %use for loop for repeating 3 time
+    for i=1:3
+        [q,r]=qr(A);
+        ans3=r\(q'*b);
+    end
+%end time
+    toc
+[q,r]=qr(A);
+ans3=r\(q'*b);
+display('scaled residuals of the solutions by qr')
+%diplay scaled residuals of the solutions by qr
+Scale3=norm(b-A*ans3)/norm(b)
+
+% using the backslash operator is the fastest method to solve the linear
+% system with largest scaled residual while using QR decomposition is the 
+% slowest method with smallest scaled residual.
+%%
+%Problem 3
+%Create a 6000 × 3000 matrix A first 3000 rows are random, and the second
+%3000 rows repeat the first 3000.
+A=rand(3000,3000);
+A=[A;A];
+%Create a 6000 × 1 random vector b
+b=rand(6000,1);
+%Create the augmented matrix 
+C=[A b];
+%since the second 3000 rows repeat the first 3000, then the last
+%3000 rows must be dependent of the first 3000 rows, so the rank of this
+%matrix is less than or equal to 3000 and no equal to the size of solution
+%vector, so this system has no solution
+solu1=A\b;
+% scaled residuals of calculated by \
+disp('scaled residuals of calculated by \')
+norm(b-A*solu1)/norm(b)
+solu2=(A'*A)\(A'*b);
+% scaled residuals calculated by normal equations
+disp('scaled residuals of calculated by normal equations')
+norm(b-A*solu2)/norm(b)
+%
+%the result in the normal equations is same as the result in backlash 
+%operator since in the normal equation method,A' is eliminated in numerator 
+%and denominator and also the error of A' , thus the solution in  in 
+%backlash operator is same as in normal equation method, and also their
+%norm.
+%%
+%Problem 4
+%create a 20×20 matrix 
+A=rand(20);
+b=rand(20,1);
+%replace the last row as the second last row, so it must be linear
+%combination of the second last row
+B=[A(1:19,:);A(19,:)];
+%determinant of this singular matrix
+disp('determinant of this matrix')
+det(B);
+disp(det(B))
+disp('solution of this matrix')
+solu=B\b
+%the determinant may be zero or a very smalle number, if there is no 
+%roundoff errror in the the elimination process such that the second last 
+%row eliminate the last row directly at first, then the last row will be 
+%zero, then the determinant will be 0. if the last row or second last row 
+%has been eliminated by other rows before eliminating each other and a 
+%roundoff error occurs, then the last row is not equal to the second last 
+%row anymore due to the roundoff error, so it is a nonsingular matrix and 
+%the determinant will not be 0.
+%%
+%Problem 5
+%create a 20×20 matrix 
+A=rand(20);
+%determinant of A
+disp('determinant of matrix A')
+det(A)
+disp('The determinant is not zero')
+%divide the matrix by 10 
+B=A/10;
+%determinant of A divide by 10
+disp('determinant of matrix A after dividing by 10')
+det(B)
+%No?a small determinant is not a good indicator of a singular matrix. 
+%since the roundoff error may coursed by formulas that involve roundoff 
+%error, convert to floating point arithmetic or roundoff errors in 
+%Gaussian elimination. Then the singular matrix may be no longer a singular
+%matrix due to the roundoff error but very closed, then the roundoff error
+%will cause a smalle determinant. However, a smaller determinant is
+%necessary to be casued by roundoff error, if the sizes of the elements in
+%the matrix are very small, then it also result in a small determinant. But
+%small determinant of a singular matrix will be very close to 1*e-18 while a
+%the determinant of small size matrix can be much samller than that?
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

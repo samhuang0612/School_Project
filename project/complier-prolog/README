@@ -1,0 +1,124 @@
+Yet another reminder: the assignments in this course are meant to 
+reflect individual work rather than what you can do with a lot of
+help from your friends.  Unacceptable collaboration incurs significant
+penalties as indicated by the department policy page:
+  http://www.csd.uwo.ca/current_students/undergraduate_students/scholastic_offences.html
+and applies both to the people taking information from other students 
+and those providing it.  Ideally you would be required to do your 
+assignments in isolated work rooms, but that isn't in the budget.
+However, we do have a course wiki where people with problems can
+post questions to get answers either from other students or the
+prof or TA, and so at least establish a level playing field among the
+people working on the assignments (i.e., all students have the opportunity
+to read what is in the wiki and indeed the marking is based on the notion
+that students are keeping up with the assignment related material on the
+wiki).  Material that is on the web but was not generated from work on
+the assignment (such as language documentation, generic stack overflow 
+postings, solutions to problems from other courses posted to the web,
+etc.) are also ok to use (but to be safe, you should include a comment
+about the source of any material like that used in case an issue 
+arises where someone else was making use of the same resource and
+so your assignment looked too simliar to someone else's assignment).
+Doing something like having someone post their assignment to github so 
+that it is now just something `on the web' is not acceptable.
+
+This is the directory where material related to the assignment whose
+due date is indicated by the name of the directory is kept.  When the
+assignment is ready, a file called description will be placed here with
+further instructions.  
+
+In particular, it will tell you what file name you have to use for your
+solution as well as what environment your solution will be tested in.
+A major part of the marking is copying assignments out of your directory
+and putting them in the `standard environment' for this course.  While all
+these languages have external packages that would make the assignments
+easier, you may only use those that are part of the standard environment
+as descriped in the assignment description.
+
+There is a compute server set up for the course at
+                  cs3342b.gaul.csd.uwo.ca
+where you can log in via ssh using your ITS account and do your work
+(which still would need to be uploaded via git to your course repository
+to count as handed in).  However, many of you will probably prefer to use 
+your own computer rather than going thru ssh.  With each assignment, I will 
+provide information about the actual version of the language we are using 
+for the marking (while languages don't change much version to version, their 
+standard libraries often grow -- so if you are running a version more recent 
+than the one we are, you might be using a function that isn't available
+at marking and thus cause your program to appear as not working and marked
+occassionally).  Even if one was doing work on another machine, a cautious
+student would at least test their solution on cs3342b.gaul.csd.uwo.ca
+to make sure everything was ok.  An incautious student should expect
+the mark of an incautious student.
+
+There are currently 189 student repositories that need to be processed for
+this course.  Fortunately, both my TA and me are computer people and so
+we automate stuff as much as possible.  However, if your file is in the 
+wrong place or has the wrong name, then it has to be handled manually.
+Mark penalties are used to discourage this, usually around a third of the
+value of the assignment, but that assumes were are only seeing a few of 
+these per assignment -- if the occurance is more frequent, the penalty 
+would be raised accordingly.  So a cautious student would reject the
+assignment description before the due date to make sure they were using
+the right file name in the right directory.  Some people work in a separate
+directory and plan on copying into the official directory when everything
+is good.  This is a bad idea.  Instead, keep your current best work in
+the official directory and copy versions that you may want to go back to
+in subdirectories.  Of course, since git is a version control program, you
+really don't have to make multiple copies of stuff in your repository as
+git is tracking all the changes automatically anyway and lets you retrieve 
+older versions of stuff -- but, since I am relatively new to git, I still 
+tend to keep important older versions in separate directories.
+
+In git, the upload process is a two step one in that you first commit and
+then you push.  It is quite possible to commit and then forget to push.
+It is also quite possible to push and get an error message that needs to
+be handed before the push will complete (this mostly happens when I change
+the repository while you are working on your copy and when you push git
+isn't able to figure out which copy of a file is the important one).  
+This doesn't happen much as I use files that you shouldn't be editing,
+but it can happen, and if you miss the error message, you think you pushed
+when you didn't.  The way to verify that everything worked ok is to check
+the web interface to your repository that BitBucket provides (as this is
+looking at the copy of your repository that I download and not the one that
+is sitting on your computer).  
+
+Although git records date stamps, these are written by your computer rather
+than the shared repository and are easy to change and so do not count as
+evidence that work was done on time.  Work was done on time if it is in
+the repository when I download my marking copy of the assignment.  Due times
+are at midnight and I do the download when I get in the next day -- so if you
+are still working at 1 am, there is no way for me to check that.  If I download
+at 3 pm and you are still working at 4 pm, then you missed the deadline and
+your most recent upload before 3 pm would be the one that is used for marking.
+Among professional programmers, best practice with git is something called
+continuous integration https://en.wikipedia.org/wiki/Continuous_integration .
+
+As far back as 2013, continuous integration was being practiced at Google
+  https://eclipsecon.org/2013/sites/eclipsecon.org.2013/files/2013-03-24%20Continuous%20Integration%20at%20Google%20Scale.pdf
+with 10,000 developers working on 5000+ projects submitting 1 change every
+5 seconds to a single monolithic code tree.  Git has the ability to create
+separate branches for different versions of a task, but this is a bad idea
+in this class as if your work isn't in the main branch, it won't get seen
+by the marker.  In a company it is a bad idea to use separate branches as
+it increases the amount of work that has to be done when things are finally
+merged together -- avoiding this problem is a main motivation for 
+continuous integration.
+
+For each assignment, there is a page in the wiki associated with that 
+assignment.  If you have questions regarding the assignment, then they
+should be posted to the page for the assignment in question.  
+
+If you have issues around the due date such as medical problems, you
+should let me know (via email or speaking with me during a class break
+if appropriate) that you are planning on going to the Dean's office to
+get the problem verified (be sure to make note of who you speak to
+there).  They should then send me a note about what they want done,
+but you should also take responsibility for contacting me via email
+(or during a class break if appropriate) to make sure everything is
+proceeding and discuss what is an appropriate way of handling the
+issue.  The one exception to this process is the warmup exercise
+which is only work 4% and hence so small that the Dean's office lets
+me make these sorts of decisions -- so for that assignment you just
+need to contact me directly (email ...) and we can proceed from there.
+

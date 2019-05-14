@@ -1,0 +1,48 @@
+--choice database
+USE lhuan22assign2db;
+
+--  Queries 1
+select description from products;
+
+--Queries 2
+select distinct city from customers;
+--Queries 3
+select * from agents order by city;
+
+--Queries 4
+select firstname,lastname from customers where city="Springfield";
+
+--Queries 5
+select lastname from customers where agentid in (select agentid from agents where firstname = "Regis");
+
+--Queries 6
+select description from products where description like "%pad%" or description like "%Pad%";
+
+--Queries 7
+select lastname,description, purchasing.quantity from customers, products, purchasing  where customers.customerid in (select customerid from purchasing) and customers.customerid=purchasing.customerid and purchasing.productid=products.productid;
+
+--Queries 8
+select quantity,sum(quantity) as "Homer's Total Purchases" from purchasing where customerid in (select customerid from customers where firstname="Homer");
+
+--Queries 9
+select purchasing.customerid,sum(purchasing.quantity),customers.firstname,customers.lastname from purchasing join customers on purchasing.customerid=customers.customerid group by purchasing.customerid;
+
+--Queries 10
+select description,quantity from products where productid not in (select productid from purchasing);
+
+--Queries 11
+select description,quantity from products where productid not in (select productid from purchasing where customerid in (select customerid from customers where firstname="Fred" and lastname="Flintstone"));
+
+--Queries 12
+SELECT agents.firstname AS "First Name(agent)", agents.lastname AS "Last Name(agent)", customers.firstname AS "First Name(customer)", customers.lastname AS "Last Name(customer)" FROM agents,customers WHERE agents.city = customers.city AND customers.agentid = agents.agentid;
+
+--Queries 13
+select quantity, sum(quantity) as "Sold knee pads" from purchasing where productid in (select productid from products where description="Knee Pads");
+
+--Queries 14
+select description from products where productid in (select productid from purchasing group by productid having sum(quantity)>3);
+
+--Queries 15
+select agents.firstname, agents.lastname from agents where agentid in ( select agentid from customers where customerid in (select customerid from purchasing where productid in (select productid from products where description = "Knee Pads")));
+
+

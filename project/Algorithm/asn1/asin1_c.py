@@ -1,0 +1,50 @@
+
+"""
+Lishan Huang
+250777962
+cs3340 assignment1
+Feb 1
+"""
+import sys
+def merge(input,numb):
+    if len(input)>numb:
+        mid = len(input)//2
+        p = input[:mid]
+        q = input[mid:]
+        merge(p,numb)
+        merge(q,numb)
+        i=0
+	j=0
+	k=0
+	while i < len(p) and j < len(q):
+            if p[i] < q[j]:
+                input[k]=p[i]
+                i=i+1
+            else:
+                input[k]=q[j]
+                j=j+1
+            k=k+1
+        while i < len(p):
+            input[k]=p[i]
+            i=i+1
+            k=k+1
+
+        while j < len(q):
+            input[k]=q[j]
+            j=j+1
+            k=k+1
+    else:
+	for j in range(1,len(input)):
+            key=input[j]
+            i=j-1
+            while i>=0 and input[i]>key:
+                input[i+1]=input[i]
+                i=i-1
+            input[i+1]=key
+str1=sys.argv[1]
+str2=sys.argv[2]
+numb1=int(str1)
+numb2=int(str2)
+c=list(range(1,numb1+1))
+c.reverse()
+print(c[:20])

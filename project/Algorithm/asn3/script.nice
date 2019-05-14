@@ -1,0 +1,7 @@
+Script started on 2019-04-03 18:02:03-04:00
+bash-4.4$ java Dijkstra ~/cs3340/asn3/sssp_graph1
+2147483647 0 7 3 8 9 17 12 9 1 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 bash-4.4$ exit
+exit
+
+Script done on 2019-04-03 18:02:35-04:00

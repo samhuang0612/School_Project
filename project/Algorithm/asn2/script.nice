@@ -1,0 +1,246 @@
+Script started on 2019-02-26 16:39:53-05:00
+bash-4.4$ asn2 gril.imgPATH=$PATH:~/cs3340/asn2
+bash-4.4$ asn2 girl.img
+1. the input binary image
++++++++++                                                           +++
++++++++++                                                           +++
+++++++++                                                            +++
++++++++                                                            ++++
+++++++   ++                                                        ++++
++++++   ++                                                         ++++
+ +++   ++                                                         +++++
+ ++   ++                  +                                    +  +++++
+ ++  ++           + ++++                                     ++  ++++++
+ +++++    +         ++++     ++++++++                      +++   ++++++
+ +++++   +         ++++++ ++++++++++                    +++++   +++++++
+  +++             + +++++++++++++++                   +++++    ++++++++
+  ++   +       + +++++++++++++++++                    +++     +++++++++
+ +++  ++       ++++++++++++++++++                  ++        ++++++++++
+ +   +++ +  +++++++++++++++++++                  +++        +++++++++++
+ +  ++ +++ ++++++++++++++++++ +                 +++        ++++++++++++
+ +  +  ++  ++++++++++++++++++ +                 ++++      +++++++++++++
+ ++++ ++ +++++++++++++++++++++                   ++++   ++++++++++++++ 
+ +++++  ++++++++++++++++++++++                   ++++   ++++++++++++++ 
+++++++ +++++++++++++++++++++                     ++++   +++++++++++++  
+++++++++++++++++++++++++++                        ++++  +++++++++++++  
++++  ++++++++++++++++++++                         ++++  ++++++++++++   
++++  ++++++++++++++++ ++                          ++++  ++++++++++++   
++   +++++++++++++++++++                           +++++ ++++++++++++   
++   +++++++++++++++++++                           +++++ +++++++++++    
+  +++++++++++++++++++ +        +                  +++++ +++++++++++    
+  ++++++++++++++++++++        +++++               +++++ +++++++++++    
+ +++++++++++++++++++             ++++           +++++++  +++++++++     
+++++++++++++++++++++       +++++++++++        +++++++++  +++++++++     
++++++++++++++++++++       ++++++++++ +       +++++++++++ +++++++++     
+++++++++++++++++++       +++++++ +++++      ++++++++++++ ++++++++      
+++++++++++++++++++       +++++++  +++++    +++++ +++++++ ++++++++      
++++++++++++++++++       +++++++    ++++    + ++  +++++++ ++++++++      
+++++++++++++++++       +   +++      +++         ++++++++ +++++++       
++++++  ++++++++++     +      ++     +++       ++++++++++ +++++++       
+++++++ +++++++++    +++               ++       +++++++++ +++++++       
+++++++ ++++++++    ++++               ++        ++++++++ +++++++       
++++++ ++++++++     ++++               ++        ++++++++  +++++        
++++++++ +++++++   +++++                +        ++++++++  +++++        
++++++++  ++++    ++++++                +        ++++++++  +++++        
+++++++++++++++   ++++++               ++         +++++++  ++++         
++++++++ + ++    +++++++               ++        ++++++++  ++++         
++++++++ +++++   ++++++++              ++         +++++++  ++++         
++++++ +++++    +++++++++           ++  +        ++++++++  +++          
+++++++++++    ++++++++++           ++  ++       +++++++++  ++          
++++++ ++++   +++++++++++           +++++++      +++++++++  ++          
+++++++++++   +++++++++++             ++++      ++++++++++  ++          
++ +++++  +  +++++++++++++                      ++++++++++  +           
++++++    + +++++++++++++                       ++++++++++  +           
++++++   +  ++++++++++++++                     +++++++++++  +           
+ ++    ++ +++++++++++++++                     +++++++++++              
+++     + +++++++++++++++++    +++  +++++ +++ +++++++++++++             
+++    +  +++++++++++++++++    ++++++++++ ++  +++++++++++++             
++    +  +++++++++++++++++++    +++++        ++++++++++++++             
++      ++++++++++++++++++++      ++++       ++++++++++++++             
+      +++++++++++++++++++++       ++++++   +++++++++++++++             
+++   +++++++++++++++++++++++               +++++++++++++++             
+++   +++++++++++++++++++++++              ++++++++++++++++             
++++ +++++++++++++++++++++++++             ++++++++++++++++             
+ +++++++++++++++++++++++++++++            ++++++++++++++++             
+    +++++++++++++++++++++++++++          +++++++++++++++++             
+  +  ++++++++++++++++++++++++             ++++++++++++++++  ++         
++ ++  ++++++++++++++++++++++                 +++++++++++++    +++++    
+++++   +++++++++++++++++++++++                ++++++++++++      +++++++
+++   + ++++++++++++++++++++++                   ++++++++++        +++++
+++   ++ +++++++++++++++++++++                    +++++++++          +++
++    + + ++++++++++++++++++++                      ++++++              
+++   + +++++++++++++++++++++                       ++++++              
+++   ++ +++++++++++++++++++                         +++++              
++++   ++ ++++++++++++++++++                          ++++              
++++   ++ +++++++++++++++++++                         ++++              
+2. the connected component image where each component is labelled with a unique character
+aaaaaaaaa                                                           bbb
+aaaaaaaaa                                                           bbb
+aaaaaaaa                                                            bbb
+aaaaaaa                                                            bbbb
+aaaaaa   aa                                                        bbbb
+aaaaa   aa                                                         bbbb
+ aaa   aa                                                         bbbbb
+ aa   aa                  c                                    d  bbbbb
+ aa  aa           e aaaa                                     ff  bbbbbb
+ aaaaa    g         aaaa     aaaaaaaa                      fff   bbbbbb
+ aaaaa   h         aaaaaa aaaaaaaaaa                    fffff   bbbbbbb
+  aaa             a aaaaaaaaaaaaaaa                   fffff    bbbbbbbb
+  aa   a       a aaaaaaaaaaaaaaaaa                    fff     bbbbbbbbb
+ aaa  aa       aaaaaaaaaaaaaaaaaa                  ii        bbbbbbbbbb
+ a   aaa a  aaaaaaaaaaaaaaaaaaa                  iii        bbbbbbbbbbb
+ a  aa aaa aaaaaaaaaaaaaaaaaa a                 iii        bbbbbbbbbbbb
+ a  a  aa  aaaaaaaaaaaaaaaaaa a                 iiii      bbbbbbbbbbbbb
+ aaaa aa aaaaaaaaaaaaaaaaaaaaa                   iiii   bbbbbbbbbbbbbb 
+ aaaaa  aaaaaaaaaaaaaaaaaaaaaa                   iiii   bbbbbbbbbbbbbb 
+aaaaaa aaaaaaaaaaaaaaaaaaaaa                     iiii   bbbbbbbbbbbbb  
+aaaaaaaaaaaaaaaaaaaaaaaaaa                        iiii  bbbbbbbbbbbbb  
+aaa  aaaaaaaaaaaaaaaaaaaa                         iiii  bbbbbbbbbbbb   
+aaa  aaaaaaaaaaaaaaaa aa                          iiii  bbbbbbbbbbbb   
+a   aaaaaaaaaaaaaaaaaaa                           iiiii bbbbbbbbbbbb   
+a   aaaaaaaaaaaaaaaaaaa                           iiiii bbbbbbbbbbb    
+  aaaaaaaaaaaaaaaaaaa a        j                  iiiii bbbbbbbbbbb    
+  aaaaaaaaaaaaaaaaaaaa        jjjjj               iiiii bbbbbbbbbbb    
+ aaaaaaaaaaaaaaaaaaa             jjjj           iiiiiii  bbbbbbbbb     
+aaaaaaaaaaaaaaaaaaaa       jjjjjjjjjjj        iiiiiiiii  bbbbbbbbb     
+aaaaaaaaaaaaaaaaaaa       jjjjjjjjjj j       iiiiiiiiiii bbbbbbbbb     
+aaaaaaaaaaaaaaaaaa       jjjjjjj jjjjj      iiiiiiiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaaaa       jjjjjjj  jjjjj    iiiii iiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaaa       jjjjjjj    jjjj    i ii  iiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaa       k   jjj      jjj         iiiiiiii bbbbbbb       
+aaaaa  aaaaaaaaaa     l      jj     jjj       iiiiiiiiii bbbbbbb       
+aaaaaa aaaaaaaaa    lll               jj       iiiiiiiii bbbbbbb       
+aaaaaa aaaaaaaa    llll               jj        iiiiiiii bbbbbbb       
+aaaaa aaaaaaaa     llll               jj        iiiiiiii  bbbbb        
+aaaaaaa aaaaaaa   lllll                j        iiiiiiii  bbbbb        
+aaaaaaa  aaaa    llllll                j        iiiiiiii  bbbbb        
+aaaaaaaaaaaaaa   llllll               jj         iiiiiii  bbbb         
+aaaaaaa a aa    lllllll               jj        iiiiiiii  bbbb         
+aaaaaaa aaaaa   llllllll              jj         iiiiiii  bbbb         
+aaaaa aaaaa    lllllllll           jj  j        iiiiiiii  bbb          
+aaaaaaaaaa    llllllllll           jj  jj       iiiiiiiii  bb          
+aaaaa aaaa   lllllllllll           jjjjjjj      iiiiiiiii  bb          
+aaaaaaaaaa   lllllllllll             jjjj      iiiiiiiiii  bb          
+a aaaaa  a  lllllllllllll                      iiiiiiiiii  b           
+aaaaa    a lllllllllllll                       iiiiiiiiii  b           
+aaaaa   m  llllllllllllll                     iiiiiiiiiii  b           
+ aa    mm lllllllllllllll                     iiiiiiiiiii              
+aa     m lllllllllllllllll    nnn  nnnnn ooo iiiiiiiiiiiii             
+aa    p  lllllllllllllllll    nnnnnnnnnn oo  iiiiiiiiiiiii             
+a    q  lllllllllllllllllll    nnnnn        iiiiiiiiiiiiii             
+a      llllllllllllllllllll      nnnn       iiiiiiiiiiiiii             
+      lllllllllllllllllllll       nnnnnn   iiiiiiiiiiiiiii             
+ll   lllllllllllllllllllllll               iiiiiiiiiiiiiii             
+ll   lllllllllllllllllllllll              iiiiiiiiiiiiiiii             
+lll lllllllllllllllllllllllll             iiiiiiiiiiiiiiii             
+ lllllllllllllllllllllllllllll            iiiiiiiiiiiiiiii             
+    lllllllllllllllllllllllllll          iiiiiiiiiiiiiiiii             
+  r  llllllllllllllllllllllll             iiiiiiiiiiiiiiii  ss         
+r rr  llllllllllllllllllllll                 iiiiiiiiiiiii    ttttt    
+rrrr   lllllllllllllllllllllll                iiiiiiiiiiii      ttttttt
+rr   u llllllllllllllllllllll                   iiiiiiiiii        ttttt
+rr   uu lllllllllllllllllllll                    iiiiiiiii          ttt
+r    u l llllllllllllllllllll                      iiiiii              
+rr   u lllllllllllllllllllll                       iiiiii              
+rr   uu lllllllllllllllllll                         iiiii              
+rrr   uu llllllllllllllllll                          iiii              
+rrr   uu lllllllllllllllllll                         iiii              
+3. a list sorted by component size, where each line of the list contains the size and the
+label of a component
+Represent Character: c & Component size: 1
+Represent Character: d & Component size: 1
+Represent Character: e & Component size: 1
+Represent Character: g & Component size: 1
+Represent Character: h & Component size: 1
+Represent Character: k & Component size: 1
+Represent Character: p & Component size: 1
+Represent Character: q & Component size: 1
+Represent Character: s & Component size: 2
+Represent Character: m & Component size: 4
+Represent Character: o & Component size: 5
+Represent Character: u & Component size: 11
+Represent Character: f & Component size: 18
+Represent Character: t & Component size: 20
+Represent Character: r & Component size: 23
+Represent Character: n & Component size: 33
+Represent Character: j & Component size: 110
+Represent Character: b & Component size: 354
+Represent Character: i & Component size: 510
+Represent Character: l & Component size: 578
+Represent Character: a & Component size: 779
+4. same as 2 with the connected component whose size equals to one or two removed.
+aaaaaaaaa                                                           bbb
+aaaaaaaaa                                                           bbb
+aaaaaaaa                                                            bbb
+aaaaaaa                                                            bbbb
+aaaaaa   aa                                                        bbbb
+aaaaa   aa                                                         bbbb
+ aaa   aa                                                         bbbbb
+ aa   aa                                                          bbbbb
+ aa  aa             aaaa                                     ff  bbbbbb
+ aaaaa              aaaa     aaaaaaaa                      fff   bbbbbb
+ aaaaa             aaaaaa aaaaaaaaaa                    fffff   bbbbbbb
+  aaa             a aaaaaaaaaaaaaaa                   fffff    bbbbbbbb
+  aa   a       a aaaaaaaaaaaaaaaaa                    fff     bbbbbbbbb
+ aaa  aa       aaaaaaaaaaaaaaaaaa                  ii        bbbbbbbbbb
+ a   aaa a  aaaaaaaaaaaaaaaaaaa                  iii        bbbbbbbbbbb
+ a  aa aaa aaaaaaaaaaaaaaaaaa a                 iii        bbbbbbbbbbbb
+ a  a  aa  aaaaaaaaaaaaaaaaaa a                 iiii      bbbbbbbbbbbbb
+ aaaa aa aaaaaaaaaaaaaaaaaaaaa                   iiii   bbbbbbbbbbbbbb 
+ aaaaa  aaaaaaaaaaaaaaaaaaaaaa                   iiii   bbbbbbbbbbbbbb 
+aaaaaa aaaaaaaaaaaaaaaaaaaaa                     iiii   bbbbbbbbbbbbb  
+aaaaaaaaaaaaaaaaaaaaaaaaaa                        iiii  bbbbbbbbbbbbb  
+aaa  aaaaaaaaaaaaaaaaaaaa                         iiii  bbbbbbbbbbbb   
+aaa  aaaaaaaaaaaaaaaa aa                          iiii  bbbbbbbbbbbb   
+a   aaaaaaaaaaaaaaaaaaa                           iiiii bbbbbbbbbbbb   
+a   aaaaaaaaaaaaaaaaaaa                           iiiii bbbbbbbbbbb    
+  aaaaaaaaaaaaaaaaaaa a        j                  iiiii bbbbbbbbbbb    
+  aaaaaaaaaaaaaaaaaaaa        jjjjj               iiiii bbbbbbbbbbb    
+ aaaaaaaaaaaaaaaaaaa             jjjj           iiiiiii  bbbbbbbbb     
+aaaaaaaaaaaaaaaaaaaa       jjjjjjjjjjj        iiiiiiiii  bbbbbbbbb     
+aaaaaaaaaaaaaaaaaaa       jjjjjjjjjj j       iiiiiiiiiii bbbbbbbbb     
+aaaaaaaaaaaaaaaaaa       jjjjjjj jjjjj      iiiiiiiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaaaa       jjjjjjj  jjjjj    iiiii iiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaaa       jjjjjjj    jjjj    i ii  iiiiiii bbbbbbbb      
+aaaaaaaaaaaaaaaa           jjj      jjj         iiiiiiii bbbbbbb       
+aaaaa  aaaaaaaaaa     l      jj     jjj       iiiiiiiiii bbbbbbb       
+aaaaaa aaaaaaaaa    lll               jj       iiiiiiiii bbbbbbb       
+aaaaaa aaaaaaaa    llll               jj        iiiiiiii bbbbbbb       
+aaaaa aaaaaaaa     llll               jj        iiiiiiii  bbbbb        
+aaaaaaa aaaaaaa   lllll                j        iiiiiiii  bbbbb        
+aaaaaaa  aaaa    llllll                j        iiiiiiii  bbbbb        
+aaaaaaaaaaaaaa   llllll               jj         iiiiiii  bbbb         
+aaaaaaa a aa    lllllll               jj        iiiiiiii  bbbb         
+aaaaaaa aaaaa   llllllll              jj         iiiiiii  bbbb         
+aaaaa aaaaa    lllllllll           jj  j        iiiiiiii  bbb          
+aaaaaaaaaa    llllllllll           jj  jj       iiiiiiiii  bb          
+aaaaa aaaa   lllllllllll           jjjjjjj      iiiiiiiii  bb          
+aaaaaaaaaa   lllllllllll             jjjj      iiiiiiiiii  bb          
+a aaaaa  a  lllllllllllll                      iiiiiiiiii  b           
+aaaaa    a lllllllllllll                       iiiiiiiiii  b           
+aaaaa   m  llllllllllllll                     iiiiiiiiiii  b           
+ aa    mm lllllllllllllll                     iiiiiiiiiii              
+aa     m lllllllllllllllll    nnn  nnnnn ooo iiiiiiiiiiiii             
+aa       lllllllllllllllll    nnnnnnnnnn oo  iiiiiiiiiiiii             
+a       lllllllllllllllllll    nnnnn        iiiiiiiiiiiiii             
+a      llllllllllllllllllll      nnnn       iiiiiiiiiiiiii             
+      lllllllllllllllllllll       nnnnnn   iiiiiiiiiiiiiii             
+ll   lllllllllllllllllllllll               iiiiiiiiiiiiiii             
+ll   lllllllllllllllllllllll              iiiiiiiiiiiiiiii             
+lll lllllllllllllllllllllllll             iiiiiiiiiiiiiiii             
+ lllllllllllllllllllllllllllll            iiiiiiiiiiiiiiii             
+    lllllllllllllllllllllllllll          iiiiiiiiiiiiiiiii             
+  r  llllllllllllllllllllllll             iiiiiiiiiiiiiiii             
+r rr  llllllllllllllllllllll                 iiiiiiiiiiiii    ttttt    
+rrrr   lllllllllllllllllllllll                iiiiiiiiiiii      ttttttt
+rr   u llllllllllllllllllllll                   iiiiiiiiii        ttttt
+rr   uu lllllllllllllllllllll                    iiiiiiiii          ttt
+r    u l llllllllllllllllllll                      iiiiii              
+rr   u lllllllllllllllllllll                       iiiiii              
+rr   uu lllllllllllllllllll                         iiiii              
+rrr   uu llllllllllllllllll                          iiii              
+rrr   uu lllllllllllllllllll                         iiii              
+bash-4.4$ exit
+exit
+
+Script done on 2019-02-26 16:40:02-05:00

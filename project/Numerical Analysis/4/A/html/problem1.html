@@ -1,0 +1,200 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>problem1</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-21"><meta name="DC.source" content="problem1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% =========================================================================</span>
+<span class="comment">% AUTHOR ..... Lishan Huang</span>
+<span class="comment">% DATE .... March 18</span>
+<span class="comment">%</span>
+<span class="comment">% Comparing different Numerical Integration</span>
+<span class="comment">%</span>
+</pre><p><b>The method function of corrected trapezoidal rule</b></p><p>corrTrap.m</p><pre class="language-matlab">
+<span class="comment">% =========================================================================</span>
+<span class="comment">% AUTHOR ..... Lishan Huang</span>
+<span class="comment">% DATE .... March 18</span>
+<span class="comment">%</span>
+<span class="comment">% Function of the corrected trapezoidal rule</span>
+<span class="comment">%</span>
+<span class="comment">% INPUT</span>
+<span class="comment">%</span>
+<span class="comment">% A function handle for the function to be integrated</span>
+<span class="comment">% Left endpoint of the interval to be integrated</span>
+<span class="comment">% Right endpoint of the interval to be integrated</span>
+<span class="comment">% The number of subdivisions to divide the interval into</span>
+<span class="comment">% The values of f'(a) and f'(b) (if zero, just ordinary trapezoidal rule)</span>
+<span class="comment">%</span>
+<span class="comment">% OUTPUT</span>
+<span class="comment">% The value of the integral of the input function between the endpoint</span>
+<span class="comment">%</span>
+<span class="comment">% =========================================================================</span>
+<span class="comment">%%</span>
+<span class="comment">%* Script*</span>
+<span class="keyword">function</span> m = corrTrap(f,LeftEnd,RightEnd,Num,dfa,dfb)
+<span class="comment">%store the input value</span>
+a=LeftEnd;
+b=RightEnd;
+n=Num;
+h=(b-a)/n;
+sigma=0;
+<span class="comment">%calculate sigmaf(xk) be definition</span>
+    <span class="keyword">for</span> k=1:n-1
+        sigma=sigma+f(a+k*h);
+    <span class="keyword">end</span>
+    <span class="comment">%formular of definition</span>
+m=h*(0.5*f(a)+sigma+0.5*f(b))+h^2*(dfa-dfb)/12;
+<span class="keyword">end</span>
+
+</pre><p>=========================================================================</p><p><b>Problem 1 script</b></p><pre class="codeinput">close <span class="string">all</span>
+clear <span class="string">all</span>
+<span class="comment">%create a vector to store the number of subintervals to be evaluated</span>
+num = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000];
+<span class="comment">%define the Bessel function with different n value</span>
+f = @(t)cos(-sin(t))/pi;
+f1 = @(t)cos(t - sin(t))/pi;
+f2 = @(t)cos(2*t - sin(t))/pi;
+f3 = @(t)cos(3*t - sin(t))/pi;
+<span class="comment">%the size of f(a)' and f(b)'</span>
+dfa = 0;
+dfb = 0;
+<span class="comment">%left endpoint and right endpoint</span>
+a = 0;
+b = pi;
+<span class="comment">%create a 4* length(num) matrix to store error for different method</span>
+Error=zeros(4,length(num));
+<span class="keyword">for</span> i = 1:length(num)
+    <span class="comment">%first row of Error stores the error of the corrected trapezoidal rule</span>
+    Error(1,i) = abs(corrTrap(f,a,b,num(i), dfa, dfb)-besselj(0,1));
+    <span class="comment">%sencond row of Error stores the  error of the composite midpoint rule</span>
+    Error(2,i) = abs(midpointRule(f1,a, b, num(i))-besselj(1,1));
+     <span class="comment">%sencond row of Error stores the  error of the composite trapezoidal rule</span>
+    Error(3,i) = abs(trapezoidRule(f2,a, b, num(i))-besselj(2,1));
+     <span class="comment">%sencond row of Error stores the  error of the Simpson?s rule</span>
+    Error(4,i) = abs(simpsonsRule(f3,a, b, num(i))-besselj(3,1));
+<span class="keyword">end</span>
+<span class="comment">%plot the error</span>
+loglog(num, Error(1,:),<span class="string">'o-'</span>, num, Error(2,:), <span class="string">'o-'</span>, num, Error(3,:), <span class="string">'o-'</span>, num, Error(4,:), <span class="string">'o-'</span>)
+xlabel(<span class="string">'Number of Subintervals'</span>);
+ylabel(<span class="string">'Forward errors'</span>);
+legend(<span class="string">"corrTrap"</span>,<span class="string">"Midpoint"</span>,<span class="string">"Trapezoid"</span>,<span class="string">"Simpson"</span>)
+title(<span class="string">"Forwad Errors of different methods"</span>)
+</pre><img vspace="5" hspace="5" src="problem1_01.png" alt=""> <p><b>Text Answer</b></p><pre class="codeinput"><span class="comment">%1:trapezoidal rule ,midpoint rule,corrected trapezoidal rule.4: Simpson?s rule</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% =========================================================================
+% AUTHOR ..... Lishan Huang
+% DATE .... March 18
+%
+% Comparing different Numerical Integration
+%
+%%
+% *The method function of corrected trapezoidal rule*
+%
+% corrTrap.m
+%
+% <include>corrTrap.m</include>
+%
+% =========================================================================
+%%
+% *Problem 1 script*
+close all
+clear all
+%create a vector to store the number of subintervals to be evaluated
+num = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000];
+%define the Bessel function with different n value
+f = @(t)cos(-sin(t))/pi; 
+f1 = @(t)cos(t - sin(t))/pi;
+f2 = @(t)cos(2*t - sin(t))/pi; 
+f3 = @(t)cos(3*t - sin(t))/pi; 
+%the size of f(a)' and f(b)'
+dfa = 0;
+dfb = 0;
+%left endpoint and right endpoint
+a = 0;
+b = pi;
+%create a 4* length(num) matrix to store error for different method
+Error=zeros(4,length(num));
+for i = 1:length(num)
+    %first row of Error stores the error of the corrected trapezoidal rule
+    Error(1,i) = abs(corrTrap(f,a,b,num(i), dfa, dfb)-besselj(0,1));
+    %sencond row of Error stores the  error of the composite midpoint rule
+    Error(2,i) = abs(midpointRule(f1,a, b, num(i))-besselj(1,1));
+     %sencond row of Error stores the  error of the composite trapezoidal rule
+    Error(3,i) = abs(trapezoidRule(f2,a, b, num(i))-besselj(2,1));
+     %sencond row of Error stores the  error of the Simpson?s rule
+    Error(4,i) = abs(simpsonsRule(f3,a, b, num(i))-besselj(3,1));
+end
+%plot the error
+loglog(num, Error(1,:),'o-', num, Error(2,:), 'o-', num, Error(3,:), 'o-', num, Error(4,:), 'o-')
+xlabel('Number of Subintervals');
+ylabel('Forward errors');
+legend("corrTrap","Midpoint","Trapezoid","Simpson")
+title("Forwad Errors of different methods")
+%%
+% *Text Answer*
+%1:trapezoidal rule ,midpoint rule,corrected trapezoidal rule.4: Simpson?s rule
+##### SOURCE END #####
+--></body></html>

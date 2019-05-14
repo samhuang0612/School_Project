@@ -1,0 +1,31 @@
+
+--List all the current databases owned by you
+SHOW DATABASES;
+
+--Delete the database called yourwesternuseridassign2db if it exists
+DROP DATABASE IF EXISTS lhuan22assign2db;
+
+--Create a database called yourwesternuseridassign2db
+CREATE DATABASE lhuan22assign2db;
+
+--Connect to (use) that database
+USE lhuan22assign2db;
+
+--Add these lines to make sure the t.a. has access to your database in order to mark this assignment:
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+DROP USER 'ta'@'localhost';
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+GRANT ALL PRIVILEGES ON lhuan22assign2db.* TO 'ta'@'localhost';
+FLUSH PRIVILEGES;
+
+--List all the tables (should be none initially)
+SHOW TABLES;
+
+--Create the tables
+CREATE TABLE products(productid CHAR(2), description VARCHAR(20) not null , cost FLOAT(30,2)  not null ,quantity INT NOT NULL, PRIMARY KEY(productid));
+CREATE TABLE agents(agentid CHAR(2), firstname VARCHAR(30) not null, lastname VARCHAR(30) not null, city VARCHAR(15), percentage INT NOT NULL, PRIMARY KEY(agentid));
+CREATE TABLE customers(customerid CHAR(2), firstname VARCHAR(30) not null, lastname VARCHAR(30) not null, city VARCHAR(15), phone VARCHAR(30), PRIMARY KEY(customerid));
+
+--List the tables again
+SHOW TABLES;
+

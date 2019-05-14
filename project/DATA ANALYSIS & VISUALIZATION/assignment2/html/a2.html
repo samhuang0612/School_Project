@@ -1,0 +1,290 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>CS2035B Assignment 2: Arrays and Efficiency</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-03-04"><meta name="DC.source" content="a2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>CS2035B Assignment 2: Arrays and Efficiency</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Identificationx</a></li><li><a href="#2">avg1 Source Code</a></li><li><a href="#3">avg2 Source Code</a></li><li><a href="#4">avg3 Source Code</a></li><li><a href="#5">stderr1 Source Code</a></li><li><a href="#6">stderr2 Source Code</a></li><li><a href="#7">stderr3 Source Code</a></li><li><a href="#8">tests Source Code</a></li><li><a href="#9">timing Source Code</a></li></ul></div><h2 id="1">Identificationx</h2><p>Your Name: Lishan Huang Your Student Number 250777962</p><h2 id="2">avg1 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = avg1(A)
+[n,m]=size(A);
+x=[];
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    b=n;
+    n=m;
+    m=b;
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1:m
+    sum=0;
+    <span class="keyword">for</span> a=1:n
+        sum=sum+A(a,i);
+    <span class="keyword">end</span>
+    x(i)=sum/n;
+<span class="keyword">end</span>
+    
+        
+
+</pre><h2 id="3">avg2 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = avg2(A)
+[n,m]=size(A);
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    b=n;
+    n=m;
+    m=b;
+<span class="keyword">end</span>
+x=zeros(1,m);
+<span class="keyword">for</span> i=1:m
+    sum=0;
+    <span class="keyword">for</span> a=1:n
+        sum=sum+A(a,i);
+    <span class="keyword">end</span>
+    x(i)=sum/n;
+<span class="keyword">end</span>
+    
+        
+
+</pre><h2 id="4">avg3 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = avg3(A)
+[n,m]=size(A);
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    b=n;
+    n=m;
+    m=b;
+<span class="keyword">end</span>
+x=sum(A)/n;
+
+</pre><h2 id="5">stderr1 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = stdder1(A)
+[n,m]=size(A);
+average=avg1(A);
+x=[];
+[a,b]=size(average);
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    B=n;
+    n=m;
+    m=B;
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1:m
+    dif=0;
+    <span class="keyword">for</span> a=1:n
+        dif=dif+(average(1,i)-A(a,i))^2;
+    <span class="keyword">end</span>
+    x(i)=sqrt(dif/(n-1));
+<span class="keyword">end</span>
+    
+        
+
+
+
+
+    
+        
+
+</pre><h2 id="6">stderr2 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = stdder2(A)
+[n,m]=size(A);
+average=avg3(A);
+[a,b]=size(average);
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    B=n;
+    n=m;
+    m=B;
+<span class="keyword">end</span>
+x=zeros(1,m);
+<span class="keyword">for</span> i=1:m
+    dif=0;
+    <span class="keyword">for</span> a=1:n
+        dif=dif+(average(1,i)-A(a,i))^2;
+    <span class="keyword">end</span>
+    x(i)=sqrt(dif/(n-1));
+<span class="keyword">end</span>
+    
+        
+
+
+
+
+    
+        
+
+</pre><h2 id="7">stderr3 Source Code</h2><pre class="language-matlab">
+<span class="keyword">function</span> x = stderr3(A)
+
+average=avg3(A);
+[n,m]=size(A);
+<span class="keyword">if</span> n==1 &amp;&amp; m &gt;1
+    A=A';
+    B=n;
+    n=m;
+    m=B;
+<span class="keyword">end</span>
+x=sqrt(sum((A-average).^2)./(n-1));
+
+</pre><h2 id="8">tests Source Code</h2><pre class="language-matlab">
+<span class="comment">%%</span>
+x=rand(100,6);
+y=rand(1,100);
+fprintf(<span class="string">"avg1"</span>)
+avg1(x)
+avg1(y)
+fprintf(<span class="string">"avg2"</span>)
+avg2(x)
+avg2(y)
+fprintf(<span class="string">"avg3"</span>)
+avg3(x)
+avg3(y)
+fprintf(<span class="string">"standard output"</span>)
+mean(x)
+mean(y)
+fprintf(<span class="string">"stderr1"</span>)
+stderr1(x)
+stderr1(y)
+fprintf(<span class="string">"stderr2"</span>)
+stderr2(x)
+stderr2(y)
+fprintf(<span class="string">"stderr3"</span>)
+stderr3(x)
+stderr3(y)
+fprintf(<span class="string">"standard output"</span>)
+std(x)
+std(y)
+
+</pre><h2 id="9">timing Source Code</h2><pre class="language-matlab">
+pow = 1;
+points = pow+1;
+m = 1000;
+n = logspace(0,pow,points);
+T = zeros(4,points);
+<span class="keyword">for</span> k=1:points
+    X=rand(m,n(k));
+runs=10;
+<span class="keyword">for</span> i=1:runs   
+    tic
+    stderr1(X);
+    elapsed(i) = toc;
+<span class="keyword">end</span>
+T(1,k) = mean(elapsed);
+fprintf(<span class="string">'stderr1 on %dx%d array: %f s\n'</span>,m,n(k),mean(elapsed));
+
+<span class="keyword">for</span> i=1:runs 
+tic
+stderr2(X);
+elapsed(i) = toc;
+<span class="keyword">end</span>
+T(2,k) = mean(elapsed);
+fprintf(<span class="string">'stderr1 on %dx%d array: %f s\n'</span>,m,n(k),mean(elapsed));
+
+<span class="keyword">for</span> i=1:runs 
+tic
+stderr3(X);
+elapsed(i) = toc;
+<span class="keyword">end</span>
+T(3,k) = mean(elapsed);
+fprintf(<span class="string">'stderr1 on %dx%d array: %f s\n'</span>,m,n(k),mean(elapsed));
+
+<span class="keyword">for</span> i=1:runs 
+tic
+std(X);
+elapsed(i) = toc;
+<span class="keyword">end</span>
+T(4 ,k) = mean(elapsed);
+fprintf(<span class="string">'stderr1 on %dx%d array: %f s\n'</span>,m,n(k),mean(elapsed));
+<span class="keyword">end</span>
+loglog(n,T)
+title(<span class="string">'Runtime Comparison for Standard Error Algorithms'</span>)
+legend (<span class="string">'Variable Array Loops'</span>, <span class="string">'JITC'</span>, <span class="string">'Vectorized'</span>,<span class="string">'MATLAB'</span>)
+xlabel(<span class="string">'Number of Size 1000x1 Input Columns'</span>)
+ylabel(<span class="string">'runtime'</span>)
+
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% CS2035B Assignment 2: Arrays and Efficiency
+%% Identificationx
+% Your Name: Lishan Huang
+% Your Student Number 250777962
+%% avg1 Source Code
+% <include>avg1.m</include>
+%% avg2 Source Code
+% <include>avg2.m</include>
+%% avg3 Source Code
+% <include>avg3.m</include>
+%% stderr1 Source Code
+% <include>stderr1.m</include>
+%% stderr2 Source Code
+% <include>stderr2.m</include>
+%% stderr3 Source Code
+% <include>stderr3.m</include>
+%% tests Source Code
+% <include>tests.m</include>
+%% timing Source Code
+% <include>timing.m</include>
+
+##### SOURCE END #####
+--></body></html>

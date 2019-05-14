@@ -1,0 +1,33 @@
+--choice database
+USE lhuan22assign2db;
+
+--Show the data in all your tables
+select * from products;
+select * from customers;
+select * from agents;
+select * from purchasing;
+
+-- create view
+create VIEW purchinfo as select customers.firstname, customers.lastname, products.description, purchasing.quantity, purchasing.quantity * products.cost as cost from customers, products, purchasing where products.productid=purchasing.productid and customers.customerid=purchasing.customerid order by customers.lastname;
+
+--shows view
+select * from purchinfo;
+
+--shows  only the rows from the view (all columns from the view) where customers spent more than 100 dollars. 
+select * from purchinfo where cost>100;
+
+--Delete the product that you made up using your product's description.
+delete from products where description = "T-shirt";
+
+--Prove that the delete worked.
+select *  from products where description = "T-shirt";
+
+--Delete all agents who are from Springfield.  
+delete from agents where city = "Springfield";
+
+--because it is a foreign key of other tables;
+
+
+
+
+
